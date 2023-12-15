@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <title>Real Time</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div>
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        
+        var graphData = {
+          type: 'line',
+          data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange','blue'],
+            datasets: [{
+              label: '# of Votes',
+              data: [12, 19, 3, 5, 2, 3],
+              borderWidth: 1
+            }]
+        },
+        options: {}};
+
+        var myChart = new Chart(ctx, graphData);
+
+        var socket = new WebSocket('ws://'+window.location.host+'/ws/graph/');
+        socket.onmessage = function(e){
+        var djangoData = JSON.parse(e.data);
+        console.log(djangoData);
+        
+        var newGraphData = graphData.data.datasets[0].data;
+        newGraphData.shift();
+        newGraphData.push(djangoData.value);
+        console.log(djangoData);
+        graphData.data.datasets[0].data = newGraphData;
+        myChart.update();
+    }
+    </script>
+</body>
+</html>

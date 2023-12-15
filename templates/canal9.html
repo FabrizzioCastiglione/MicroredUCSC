@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canal1</title>
+    <!---Fuentes-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <!--Icons-->
+    <script src="https://kit.fontawesome.com/99727b3388.js" crossorigin="anonymous"></script>
+    <!--CSS-->
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!--JavaScript-->
+    <!--Animacion-->
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="/static/js/main.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
+    <script src="/static/js/Chart.min.js"></script>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo-details">
+              <div class="logo_name">MyCrossing</div>
+              <i class="far fa-lightbulb" id="btn"></i>
+        </div>
+        <ul class="nav_list">
+            <li>
+                <a href="{% url "allfigure"%}">
+                    <i class="fas fa-solar-panel"></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url "canal1"%}">
+                    <i class=""></i>
+                    <span class="links_name">Canal 1</span>
+                </a>
+            </li>
+            <li>
+              <a href="{% url "canal2"%}">
+                  <i class="#"></i>
+                  <span class="links_name">Canal 2</span>
+              </a>
+            </li>
+            <li>
+              <a href="">
+                  <i class="{% url "canal3"%}"></i>
+                  <span class="links_name">Canal 3</span>
+              </a>
+            </li>
+            <li>
+              <a href="{% url "canal4"%}">
+                  <i class="#"></i>
+                  <span class="links_name">Canal 4</span>
+              </a>
+          </li>
+          <li>
+            <a href="{% url "canal5"%}">
+                <i class="#"></i>
+                <span class="links_name">Canal 5</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url "canal6"%}">
+                <i class="#"></i>
+                <span class="links_name">Canal 6</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url "canal7"%}">
+                <i class="#"></i>
+                <span class="links_name">Canal 7</span>
+            </a>
+        </li>
+        <li>
+          <a href="{% url "canal8"%}">
+              <i class="#"></i>
+              <span class="links_name">Canal 8</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+              <i class="#"></i>
+              <span class="links_name">Canal 9</span>
+          </a>
+        </li>
+            <li>
+                <a href="{% url "canal10"%}">
+                    <i class="fas fa-cogs"></i>
+                    <span class="links_name">Canal 10</span>
+                </a>
+            </li>
+            <li>
+              <a href="{% url "canal11"%}">
+                  <i class="fas fa-cogs"></i>
+                  <span class="links_name">Canal 11</span>
+              </a>
+          </li>
+          <li>
+            <a href="{% url "canal12"%}">
+                <i class="fas fa-cogs"></i>
+                <span class="links_name">Canal 12</span>
+            </a>
+        </li>
+        </ul>
+    </div>
+
+
+    <div class="home_content1">
+        <div class="plot"><h1>Voltaje de Linea</h1><canvas id="voltaje"><br></div>
+        <div class="plot"><h1>Corriente de Linea</h1><canvas id="corriente"><br></div>
+        <div class="plot"><h1>Frecuencia</h1><canvas id="frecuencia"><br></div>
+        <div class="plot"><h1>Potencia Activa</h1><canvas id="potencia_activa"></canvas><br></div>
+        <div class="plot"><h1>Potencia Aparente</h1><canvas id="factordepotencia"></canvas><br></div>
+        <div class="plot"><h1>Factor de Potencia</h1><canvas id="potencia_aparente"></canvas><br></div>
+    </div>
+    
+</body>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@3.2.1/dist/chart.min.js"></script>
+<script type="text/javascript" src="/static/js/js/channel9.js"></script>
+<script src="/static/js/siderbar.js"></script>
+</html>

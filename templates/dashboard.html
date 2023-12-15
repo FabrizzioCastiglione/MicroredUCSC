@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static%}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microred UCSC</title>
+    <!---Fuentes-->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <!--Icons-->
+    <script src="https://kit.fontawesome.com/99727b3388.js" crossorigin="anonymous"></script>
+    <!--CSS-->
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <!--JavaScript-->
+       
+    <!--Animacion-->    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@0.7.5/dist/chartjs-plugin-zoom.min.js"></script>
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+</head>
+
+
+<body >
+  <div class="sidebar">
+      <div class="logo-details">
+          <div class="logo_name">Microred UCSC</div>
+          <i class="far fa-lightbulb" id="btn"></i>
+      </div>
+    <ul class="nav_list">
+        <li>
+            <a href="#">
+                <i class="fas fa-solar-panel"></i>
+                <span class="links_name">Dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-chart-area"></i>
+                <span class="links_name">Analizador de Energia</span>
+            </a>
+            <ul class="desplegable">
+                <li>
+                    <a href="#">
+                        <i class=""></i>
+                        <span class="links_name">Canal 1</span>
+                    </a>
+                </li>
+                <li>
+                <a href="{% url "canal2"%}">
+                    <i class="#"></i>
+                    <span class="links_name">Canal 2</span>
+                </a>
+                </li>
+                <li>
+                <a href="">
+                    <i class="{% url "canal3"%}"></i>
+                    <span class="links_name">Canal 3</span>
+                </a>
+                </li>
+                <li>
+                <a href="{% url "canal4"%}">
+                    <i class="#"></i>
+                    <span class="links_name">Canal 4</span>
+                </a>
+                </li>
+                <li>
+                    <a href="{% url "canal5"%}">
+                        <i class="#"></i>
+                        <span class="links_name">Canal 5</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url "canal6"%}">
+                        <i class="#"></i>
+                        <span class="links_name">Canal 6</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url "canal7"%}">
+                        <i class="#"></i>
+                        <span class="links_name">Canal 7</span>
+                    </a>
+                </li>
+                <li>
+                <a href="{% url "canal8"%}">
+                    <i class="#"></i>
+                    <span class="links_name">Canal 8</span>
+                </a>
+                </li>
+                <li>
+                <a href="">
+                    <i class="{% url "canal9"%}"></i>
+                    <span class="links_name">Canal 9</span>
+                </a>
+                </li>
+                    <li>
+                        <a href="{% url "canal10"%}">
+                            <i class="#"></i>
+                            <span class="links_name">Canal 10</span>
+                        </a>
+                    </li>
+                    <li>
+                    <a href="{% url "canal11"%}">
+                        <i class="#"></i>
+                        <span class="links_name">Canal 11</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url "canal12"%}">
+                        <i class="#"></i>
+                        <span class="links_name">Canal 12</span>
+                    </a>
+                </li>
+            </ul>
+        </li>       
+    </ul>
+  </div>
+
+    <div class="home_content">
+      <div class="container">
+        <div class="box1"><h1>Generacion Por Canal</h1><div class="box1-1"><canvas id="doughnut-chart" ></canvas></div></div>
+        <div class="box4">
+          <div class="etiqueta1">
+            <span class="h5">Factor de Potencia</span><br>
+            <input class="casilla" type="text" id="mytext" disabled>
+          </div>
+          <div class="etiqueta1">
+            <span class="h5">Potencia Activa</span><br>
+            <input class="casilla" type="text1" id="mytext1" disabled>
+            <span class="h5" style="font-size:0.8vw;">Watt</span><br>
+          </div>
+          <div class="etiqueta1">
+            <span class="h5">Potencia Reactiva</span><br>
+            <input class="casilla" type="text2" id="mytext2" disabled>
+            <span class="h5" style="font-size:0.8vw;">Watt</span><br>
+          </div>
+        </div>
+        <div class="box2"><h1>Potencia de Planta</h1><canvas id="Power"></canvas></div>
+      </div>
+      <div class="box3">
+        <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-3">
+              <table class="table" aria-label="Dessert calories">
+                <thead>
+                  <tr class="mdc-data-table__header-row">
+                    <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Canal</th>
+                    <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Equipo</th>
+                    <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Modelo</th>
+                    <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Marca</th>
+                    <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Fase</th>
+
+                  </tr>
+                </thead>
+                <tbody class="mdc-data-table__content">
+                  <tr data-row-id="u0" class="mdc-data-table__row">
+                    <th class="mdc-data-table__cell">1</th>
+                    <td class="mdc-data-table__cell">Inversor N°4</td>
+                    <td class="mdc-data-table__cell">Galvo</td>
+                    <td class="mdc-data-table__cell">Fronius</td>
+                    <td class="mdc-data-table__cell">Monofasico</td>
+                    
+                  </tr>
+                  <tr data-row-id="u3" class="mdc-data-table__row">
+                    <th class="mdc-data-table__cell">2</th>
+                    <td class="mdc-data-table__cell">Inversor N°1</td>
+                    <td class="mdc-data-table__cell">Symo</td>
+                    <td class="mdc-data-table__cell">Fronius</td>
+                    <td class="mdc-data-table__cell">Trifasico</td>
+                  
+                  </tr>
+                  <tr data-row-id="u3" class="mdc-data-table__row">
+                    <th class="mdc-data-table__cell">3</th>
+                    <td class="mdc-data-table__cell">Inversor N°2</td>
+                    <td class="mdc-data-table__cell">Symo</td>
+                    <td class="mdc-data-table__cell">Fronius</td>
+                    <td class="mdc-data-table__cell">Trifasico</td>
+                  </tr>
+                  <tr data-row-id="u3" class="mdc-data-table__row">
+                    <th class="mdc-data-table__cell">4</th>
+                    <td class="mdc-data-table__cell">Inversor N°3</td>
+                    <td class="mdc-data-table__cell">Primo</td>
+                    <td class="mdc-data-table__cell">Fronius</td>
+                    <td class="mdc-data-table__cell">Monofasico</td>
+                  </tr>
+                  <tr data-row-id="u3" class="mdc-data-table__row">
+                    <th class="mdc-data-table__cell">5</th>
+                    <td class="mdc-data-table__cell">~</td>
+                    <td class="mdc-data-table__cell">~</td>
+                    <td class="mdc-data-table__cell">~</td>
+                    <td class="mdc-data-table__cell">~</td>
+                  </tr>
+                  <tr data-row-id="u3" class="mdc-data-table__row">
+                    <th class="mdc-data-table__cell">6</th>
+                    <td class="mdc-data-table__cell">~</td>
+                    <td class="mdc-data-table__cell">~</td>
+                    <td class="mdc-data-table__cell">~</td>
+                    <td class="mdc-data-table__cell">~</td>
+                  </tr>
+                  <tr data-row-id="u3" class="mdc-data-table__row">
+                    <th class="mdc-data-table__cell">7</th>
+                    <td class="mdc-data-table__cell">~</td>
+                    <td class="mdc-data-table__cell">~</td>
+                    <td class="mdc-data-table__cell">~</td>
+                    <td class="mdc-data-table__cell">~</td>
+                  </tr>
+                  <tr data-row-id="u3" class="mdc-data-table__row">
+                    <th class="mdc-data-table__cell">8</th>
+                    <td class="mdc-data-table__cell">Inversor N°5</td>
+                    <td class="mdc-data-table__cell">Sunny Tripower</td>
+                    <td class="mdc-data-table__cell">SMA</td>
+                    <td class="mdc-data-table__cell">Trifasico</td>
+                  </tr>
+                  <tr data-row-id="u3" class="mdc-data-table__row">
+                    <th class="mdc-data-table__cell">9</th>
+                    <td class="mdc-data-table__cell">Inversor N°6</td>
+                    <td class="mdc-data-table__cell">Sunny Tripower</td>
+                    <td class="mdc-data-table__cell">SMA</td>
+                    <td class="mdc-data-table__cell">Trifasico</td>
+                  </tr>
+                  <tr data-row-id="u3" class="mdc-data-table__row">
+                    <th class="mdc-data-table__cell">10</th>
+                    <td class="mdc-data-table__cell">Inversor N°5</td>
+                    <td class="mdc-data-table__cell">Sunny Tripower</td>
+                    <td class="mdc-data-table__cell">SMA</td>
+                    <td class="mdc-data-table__cell">Trifasico</td>
+                  </tr>
+                  <tr data-row-id="u3" class="mdc-data-table__row">
+                    <th class="mdc-data-table__cell">11</th>
+                    <td class="mdc-data-table__cell">~</td>
+                    <td class="mdc-data-table__cell">~</td>
+                    <td class="mdc-data-table__cell">~</td>
+                    <td class="mdc-data-table__cell">~</td>
+                  </tr>
+                  <tr data-row-id="u3" class="mdc-data-table__row">
+                    <th class="mdc-data-table__cell">12</th>
+                    <td class="mdc-data-table__cell">Sunny Multigate</td>
+                    <td class="mdc-data-table__cell">Sunny Boy</td>
+                    <td class="mdc-data-table__cell">SMA</td>
+                    <td class="mdc-data-table__cell">Monofasico</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
+</body>
+<script src="{% static 'js/circulo.js' %}"></script>
+<script src="{% static 'js/siderbar.js' %}"></script>
+</html>
+
+
+<!---
+
+<div class="bottom-row">
+  <div class="toggle">Informationen</div>
+    <div class="detail">
+        <p>Just a little fake Ping with random numbers :P</p>
+    </div>
+</div>
+
+
+css
+
+
+  .bottom-row{
+    width: 100%;
+    margin-top: auto;
+    .toggle{
+      .flex();
+      flex-direction: row;
+      align-items: center;
+      color: @base__color-2;
+      font-size: 12px;
+      line-height: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+      &::before{
+        content: 'i';
+        display: block;
+        font-size: 12px;
+        line-height: 12px;
+        .flex();
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 16px;
+        height: 16px;
+        margin-right: 10px;
+        color: @base__color-3;
+        background-color: @base__color-2;
+        border-radius: 30px;
+        .transition();
+      }
+      &:hover{
+        &::before{
+          .translate(3px,0);
+        }
+      }
+    }
+    .detail{
+      position: absolute;
+      left: calc(100% - 20px);
+      bottom: 30px;
+      width: 140px;
+      background-color: @base__color-2;
+      border-radius: 4px;
+      padding: 14px;
+      .shadow(0 10px 10px -7px fade(@base__color-1, 20%));
+      opacity: 0;
+      z-index: -1;
+      pointer-events: none;
+      .translate(30px,0);
+      .transition();
+      &.active{
+        opacity: 1;
+        z-index: 2;
+        pointer-events: auto;
+        .translate(0,0);
+      }
+      p{
+        user-select: none;
+        font-size: 14px;
+        line-height: 16px;
+        color: fade(@base__color-1, 75%);
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+-->
