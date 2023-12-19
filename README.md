@@ -1,7 +1,7 @@
 # MicroredUCSC
 
 
-This a monitor system for non-conventional renewable energy
+This a monitor system for non-conventional renewable energy in the Catholic University of the Most Holy Conception, departament engeenery electric.
 
 ´´´bash
 
