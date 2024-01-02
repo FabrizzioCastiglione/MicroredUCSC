@@ -77,3 +77,88 @@ server {
 }
 
 ```
+
+
+
+```bash
+
+
+pip install uvicorn
+pip install gunicorn
+apt-get install nginx
+
+# Test with gunicorn
+gunicorn <projectname>.asgi:application -w 4 -k uvicorn.workers.UvicornWorker
+
+# Configerate gunicorn.service
+sudo nano /etc/systemd/system/gunicorn.service
+
+[Unit]
+Description=gunicorn daemon
+Requires=gunicorn.socket
+After=network.target
+
+[Service]
+User=<name>
+Group=<name>
+WorkingDirectory=<project path>
+ExecStart=/<path>/venv/bin/gunicorn <nameofproject>.asgi:application -w 4 -k uvicorn.workers.UvicornWorker --bind unix:/run/gunicorn.sock
+
+# Creating systemd Socket and Service Files for Gunicorn
+sudo nano /etc/systemd/system/gunicorn.socket
+
+[Unit]
+Description=gunicorn socket
+
+[Socket]
+ListenStream=/run/gunicorn.sock
+
+[Install]
+WantedBy=sockets.target
+
+
+
+# Starting and enabeling
+sudo systemctl start gunicorn.socket
+sudo systemctl enable gunicorn.socket
+
+# Checking status of Gunicorn Socket File
+sudo systemctl status gunicorn.socket
+
+# Check Gunicorn Status
+sudo systemctl status gunicorn
+
+# Configerating nginx
+
+server {
+ listen 80 default_server;
+ listen [::]:80 default_server;
+ server_name _;
+ client_max_body_size 20M;
+ charset     utf-8;
+
+
+
+ location / {
+            proxy_pass http://unix:/run/gunicorn.sock;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "upgrade";
+
+            proxy_redirect     off;
+            proxy_set_header   Host $host;
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   X-Forwarded-Host $server_name;
+        }
+
+}
+
+
+
+
+# Restart
+sudo systemctl daemon-reload
+sudo systemctl restart gunicorn
+sudo services nginx restart
+```
