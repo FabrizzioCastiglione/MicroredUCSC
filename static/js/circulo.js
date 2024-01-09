@@ -10,7 +10,6 @@ var Potencia= new Chart(ctx, {
         labels:  [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
         datasets: [{
             label: 'Potencia',
-            fill: true,
             backgroundColor : gradient,
             borderColor : "#0833A2",
             borderWidth: 2,
@@ -18,11 +17,38 @@ var Potencia= new Chart(ctx, {
             pointStrokeColor:"#36A2EB",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "#ff6c23",
-            tension: 0.3,
-            data:  [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
+            tension: 0.2,
+            pointRadius: 0,
+            fill: true,
+            pointStyle: 'clearRect',
+            borderDashOffset: 0.0,
+
+            data:  [1,4,5,4,16,6,7,48,9,710,181,12,513,14,815,146,7,18,9,20],
         }]
     },
-    options: {}
+    options: {
+        scales:     {
+        xAxes: [{
+            scaleLabel: {
+                display:     true,
+                labelString: 'Tiempo [H]'
+            }
+        }],
+        yAxes: [{
+            scaleLabel: {
+                display:     true,
+                labelString: 'Watt [kW]'
+            }
+            }]
+        },
+        legend:
+        {
+            display: false,
+        },
+        tooltip: {
+            enabled: false,
+        }
+    }
 });
    /* options: {
         scales:     {
@@ -80,10 +106,18 @@ var Dona = new Chart(donactx, {
           labels: ['Canal 1','Canal 2','Canal 3','Canal 4','Canal 5','Canal 6', 'Canal 7','Canal 8', 'Canal 9', 'Canal 10', 'Canal 11', 'Canal 12'],
           datasets: [{
             label: 'Potencia',
-            data: [],
+            data: [1,3,5,6,5,6,7,8,9,10,11,12],
             backgroundColor:  ['Red', 'Orange', 'Yellow', 'Green', 'Blue','White','purple','grey','#ffce56','#36a2eb', 'rgba(75, 192, 192, 0.2)'],
-            borderWidth: 1
+            borderWidth: 1,
+            
         }]
+    },
+    options: {
+        legend:
+        {
+            position:'left',
+            align: 'start',
+        }
     }
 });
       
@@ -115,7 +149,7 @@ var updatenumber = function () {
         type: 'GET',
         dataType: 'json',
         success: function (data) {
-            let text = [];
+            let text = [1];
             text =  data.FactorPotencia;
             document.getElementById("mytext").value = text;
         }
@@ -134,7 +168,7 @@ var updatenumber1 = function () {
         type: 'GET',
         dataType: 'json',
         success: function (data) {
-            let text1 = [];
+            let text1 = [2];
             text1 =  data.Potencia_Activa;
             document.getElementById("mytext1").value = text1;
         }
@@ -156,7 +190,7 @@ var updatenumber2 = function () {
         type: 'GET',
         dataType: 'json',
         success: function (data) {
-            let text2 = [];
+            let text2 = [4];
             text2 =  data.PotenciaReactiva;
             document.getElementById("mytext2").value = text2;
         }
