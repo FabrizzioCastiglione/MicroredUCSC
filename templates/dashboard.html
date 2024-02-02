@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-{% load static%}
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,9 +11,9 @@
     <!--Icons-->
     <script src="https://kit.fontawesome.com/99727b3388.js" crossorigin="anonymous"></script>
     <!--CSS-->
-    <link rel="stylesheet" href="{% static 'css/style.css'%}">
-    <!--JavaScript-->
-       
+   <!--- <link rel="stylesheet" href="{% static 'css/style3.css' %}">    -->
+    <link rel="stylesheet" href="{% static 'css/style3.css' %}">       
+
     <!--Animacion-->    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
@@ -24,119 +24,50 @@
 </head>
 
 
-<body >
-  <div class="sidebar">
-      <div class="logo-details">
-          <div class="logo_name">Microred UCSC</div>
-          <i class="far fa-lightbulb" id="btn"></i>
+<body >    
+  <nav id="sidebar">
+    <div class="title">Microred UCSC <i class="far fa-lightbulb"></i></div>
+    <ul class="list-items">
+        <li><a href="#"><i class="fas fa-solar-panel"></i>Dashboard</a></li>
+        <li><a href="#"><i class="fas fa-chart-area"></i>Analizador de Energia</a></li>
+        <div class='canales'>
+        <li><a href="{% url 'canal1'%}">Canal 1</a></li>
+        <li><a href="{% url 'canal2'%}">Canal 2</a></li>
+        <li><a href="{% url 'canal3'%}">Canal 3</a></li>
+        <li><a href="{% url 'canal4'%}">Canal 4</a></li>
+        <li><a href="{% url 'canal5'%}">Canal 5</a></li>
+        <li><a href="{% url 'canal6'%}">Canal 6</a></li>
+        <li><a href="{% url 'canal7'%}">Canal 7</a></li>
+        <li><a href="{% url 'canal8'%}">Canal 8</a></li>
+        <li><a href="{% url 'canal9'%}">Canal 9</a></li>
+        <li><a href="{% url 'canal10'%}">Canal 10</a></li>
+        <li><a href="{% url 'canal11'%}">Canal 11</a></li>
+        <li><a href="{% url 'canal12'%}">Canal 12</a></li>
       </div>
-    <ul class="nav_list">
-        <li>
-            <a href="#">
-                <i class="fas fa-solar-panel"></i>
-                <span class="links_name">Dashboard</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class="fas fa-chart-area"></i>
-                <span class="links_name">Analizador de Energia</span>
-            </a>
-            <ul class="desplegable">
-                <li>
-                    <a href="#">
-                        <i class=""></i>
-                        <span class="links_name">Canal 1</span>
-                    </a>
-                </li>
-                <li>
-                <a href="{% url "canal2"%}">
-                    <i class="#"></i>
-                    <span class="links_name">Canal 2</span>
-                </a>
-                </li>
-                <li>
-                <a href="">
-                    <i class="{% url "canal3"%}"></i>
-                    <span class="links_name">Canal 3</span>
-                </a>
-                </li>
-                <li>
-                <a href="{% url "canal4"%}">
-                    <i class="#"></i>
-                    <span class="links_name">Canal 4</span>
-                </a>
-                </li>
-                <li>
-                    <a href="{% url "canal5"%}">
-                        <i class="#"></i>
-                        <span class="links_name">Canal 5</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url "canal6"%}">
-                        <i class="#"></i>
-                        <span class="links_name">Canal 6</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url "canal7"%}">
-                        <i class="#"></i>
-                        <span class="links_name">Canal 7</span>
-                    </a>
-                </li>
-                <li>
-                <a href="{% url "canal8"%}">
-                    <i class="#"></i>
-                    <span class="links_name">Canal 8</span>
-                </a>
-                </li>
-                <li>
-                <a href="">
-                    <i class="{% url "canal9"%}"></i>
-                    <span class="links_name">Canal 9</span>
-                </a>
-                </li>
-                    <li>
-                        <a href="{% url "canal10"%}">
-                            <i class="#"></i>
-                            <span class="links_name">Canal 10</span>
-                        </a>
-                    </li>
-                    <li>
-                    <a href="{% url "canal11"%}">
-                        <i class="#"></i>
-                        <span class="links_name">Canal 11</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url "canal12"%}">
-                        <i class="#"></i>
-                        <span class="links_name">Canal 12</span>
-                    </a>
-                </li>
-            </ul>
-        </li>       
     </ul>
-  </div>
+  </nav>
+    
+   
 
     <div class="home_content">
       <div class="container">
-        <div class="box1"><h1>Generacion Por Canal</h1><div class="box1-1"><canvas id="doughnut-chart" ></canvas></div></div>
+        <div class="box1"><h1>Generacion Por Canal</h1>
+          <div class="box1-1"><canvas class ='Donut' id="doughnut-chart" style='margin-left: 3.1vw;'></canvas></div>
+        </div>
         <div class="box4">
-          <div class="etiqueta1">
+          <div class="etiqueta">
             <span class="h5">Factor de Potencia</span><br>
             <input class="casilla" type="text" id="mytext" disabled>
           </div>
-          <div class="etiqueta1">
+          <div class="etiqueta">
             <span class="h5">Potencia Activa</span><br>
             <input class="casilla" type="text1" id="mytext1" disabled>
-            <span class="h5" style="font-size:0.8vw;">Watt</span><br>
+            <span class="h5" style="font-size:0.9vw;">Watt</span><br>
           </div>
-          <div class="etiqueta1">
+          <div class="etiqueta">
             <span class="h5">Potencia Reactiva</span><br>
             <input class="casilla" type="text2" id="mytext2" disabled>
-            <span class="h5" style="font-size:0.8vw;">Watt</span><br>
+            <span class="h5" style="font-size:0.9vw;">Watt</span><br>
           </div>
         </div>
         <div class="box2"><h1>Potencia de Planta</h1><canvas id="Power"></canvas></div>
@@ -253,88 +184,5 @@
     </div>
 </body>
 <script src="{% static 'js/circulo.js' %}"></script>
-<script src="{% static 'js/siderbar.js' %}"></script>
+
 </html>
-
-
-<!---
-
-<div class="bottom-row">
-  <div class="toggle">Informationen</div>
-    <div class="detail">
-        <p>Just a little fake Ping with random numbers :P</p>
-    </div>
-</div>
-
-
-css
-
-
-  .bottom-row{
-    width: 100%;
-    margin-top: auto;
-    .toggle{
-      .flex();
-      flex-direction: row;
-      align-items: center;
-      color: @base__color-2;
-      font-size: 12px;
-      line-height: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      user-select: none;
-      &::before{
-        content: 'i';
-        display: block;
-        font-size: 12px;
-        line-height: 12px;
-        .flex();
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 16px;
-        height: 16px;
-        margin-right: 10px;
-        color: @base__color-3;
-        background-color: @base__color-2;
-        border-radius: 30px;
-        .transition();
-      }
-      &:hover{
-        &::before{
-          .translate(3px,0);
-        }
-      }
-    }
-    .detail{
-      position: absolute;
-      left: calc(100% - 20px);
-      bottom: 30px;
-      width: 140px;
-      background-color: @base__color-2;
-      border-radius: 4px;
-      padding: 14px;
-      .shadow(0 10px 10px -7px fade(@base__color-1, 20%));
-      opacity: 0;
-      z-index: -1;
-      pointer-events: none;
-      .translate(30px,0);
-      .transition();
-      &.active{
-        opacity: 1;
-        z-index: 2;
-        pointer-events: auto;
-        .translate(0,0);
-      }
-      p{
-        user-select: none;
-        font-size: 14px;
-        line-height: 16px;
-        color: fade(@base__color-1, 75%);
-        font-weight: 400;
-      }
-    }
-  }
-}
-
--->
