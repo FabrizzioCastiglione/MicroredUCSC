@@ -16,12 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from graph.views import  main,index,canal1, canal2, canal3, canal4,canal5,canal6,canal7,canal8,canal9,canal10,canal11,canal12
+from graph.views import  main,index,canal1, canal2, canal3, canal4,canal5,canal6,canal7,canal8,canal9,canal10,canal11,canal12,dashboard 
 
 urlpatterns = [
-    path('',index),
+    path('', dashboard, name="dashboard"),
     path('main/', main),
-     path('canal1/', canal1, name="canal1"),
+    path('index', index),
+    path('canal1/', canal1, name="canal1"),
     path('canal2/', canal2, name="canal2"),
     path('canal3/', canal3, name="canal3"),
     path('canal4/', canal4, name="canal4"),
